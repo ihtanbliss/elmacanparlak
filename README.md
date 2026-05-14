@@ -1,2 +1,1 @@
-- 👋 Hi, I’m @elmacanparlak
-- print("HelloWorld")
+coding
