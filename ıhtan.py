@@ -1,71 +1,125 @@
-print("Welcome, Young and courageous adventurer! Your journey begins here. You will not stop in the face of summer, winter, hot and cold, through thick and thin and will continue to fight until the end")
-print("Choose your gender to start.")
-gender = input()
-if gender == "boy" or gender == "male" or gender == "guy" or gender == "man":
-     print("Welcome aboard! Please state your name.")
-     name = input()
-     print("Glad to see you here!",name,"\nPlease choose your hairstyle")
-     print("1:Buzz Cut")
-     print("2:Mullet")
-     print("3:Mohawk")
-     print("4:Low Taper Fade")
-     hair = input()
-     if hair == "1" or hair == "2" or hair == "3" or hair == "4":
-         print("Wise choice young traveler! Let us dress you so that you won't feel cold")
-         print("Choose your dress from 1-4")
-         print("1:braies")
-         print("2:hose")
-         print("3:doublet")
-         print("4:houppelande")
-         dress = input()
-         if dress == "1" or dress == "2" or dress == "3" or dress == "4":
-             print("You are all set for your journey! Go on and show the world what you got!")
-elif gender == "girl" or gender == "woman" or gender == "female":
-        print("Welcome aboard! Please state your name.")
-        name2 = input()
-        print("Glad to meet you", name2, "\nPlease choose your hairstyle")
-        print("1:Bobcut")
-        print("2:Pixie")
-        print("3:Shag Cut")
-        print("4:Bangs")
-        hair2 = input()
-        if hair2 == "1" or hair2 == "2" or hair2 == "3" or hair2 == "4":
-         print("Wise choice young traveler! Let us dress you so that you won't feel cold")
-         print("Choose your dress from 1-4")
-         print("1:Kirtle")
-         print("2:Cotehardie")
-         print("3:Surcote")
-         print("Mantle")
-         dress2 = input()
-         if dress2 == "1" or dress2 == "2" or dress2 == "3" or dress2 == "4":
-              print("You are all set for your journey! Go on and show the world what you got!")
-print("Loading.....\n\n\nPlease type 'goo' to continue")
-go = input()
-print("Your adventure begins in an enormous forest full of trees.\nTo survive you need resources, Type 'inv' to see your resources.")
-inv= input()
-if inv == "inv":
-    print("Wood: 2")
-    print("Rock: 5")
-    print("Water: 2 Liters")
-    print("A flint")
-    print("You have a lot to do. But everything begins with a fire and some sheen. Press '4' to light a fire.")
-    fire = input()
-    if fire == "4":
-        print("You lit up a smoldering fire! Now you don't feel as cold.\nYou recieved the achievement of fire.\nPress '1' to see your stats")
-        stats = input()
-        if stats == "1":
-            print("Craftmanship: Level 1\nOutdoormanship: Level 1(20% Progress)\n Strenght: Level 1\nStamina: Level 1\nArmory: Level 1")
-            print("The night begins to creep as you are rifting through the forest. You encounter a harmless looking bunny.\nWhat do you do?\nAttack, Talk, Walk past, Pet.")
-            action = input()
-            if action == "Attack":
-                print("The bunny was actually a hazardous monster. \nYou died.")
-            elif action == "Talk":
-                print("The bunny was actually was a subject of a spell. It talks back at you, uttering the words of mistery.\nYou gained 2 points of friendship.")
-            elif action == "Walk Past":
-                    print("Curiosity kills the cat. Nothing happened")
-            elif action == "Pet":
-                    print("You pet the cute bunny. It meows back at you. How? Nobody knows. You gained 1 points of cuteness.")
+# --- Player Data ---
+stats = {
+    "Health": 100,
+    "Strength": 1,
+    "Stamina": 1,
+    "Friendship": 0,
+    "Cuteness": 0,
+    "Craftmanship": 1
+}
 
-             
+inventory = {
+    "Wood": 2,
+    "Stone": 5,
+    "Water": 2,
+    "Flint": 1,
+    "Food": 1
+}
 
-    
+# --- Utility Functions ---
+def show_inventory():
+    print("\n=== INVENTORY ===")
+    for item, amount in inventory.items():
+        print(f"{item}: {amount}")
+
+def show_stats():
+    print("\n=== STATS ===")
+    for stat, value in stats.items():
+        print(f"{stat}: {value}")
+
+def chop_wood():
+    print("You chop down some wood. +5 Wood")
+    inventory["Wood"] += 5
+
+def forage_food():
+    print("You forage and find a deer carcass. +5 Food")
+    inventory["Food"] += 5
+
+def search_coal():
+    print("You wander into caves but get scared off. No coal found.")
+
+def mine_stone():
+    print("You crafted a wooden pickaxe and mined stones. +5 Stone")
+    inventory["Stone"] += 5
+
+# --- Character Creation ---
+def character_creation():
+    print("Choose your gender to start.")
+    gender = input().lower()
+
+    if gender in ["boy", "male", "guy", "man"]:
+        name = input("Welcome aboard! Please state your name: ")
+        print(f"Glad to see you here, {name}!")
+        print("Choose your hairstyle: 1:Buzz Cut 2:Mullet 3:Mohawk 4:Low Taper Fade")
+        hair = input()
+        print("Choose your dress: 1:Braies 2:Hose 3:Doublet 4:Houppelande")
+        dress = input()
+        print("You are all set for your journey!")
+
+    elif gender in ["girl", "woman", "female"]:
+        name = input("Welcome aboard! Please state your name: ")
+        print(f"Glad to meet you, {name}!")
+        print("Choose your hairstyle: 1:Bobcut 2:Pixie 3:Shag Cut 4:Bangs")
+        hair = input()
+        print("Choose your dress: 1:Kirtle 2:Cotehardie 3:Surcote 4:Mantle")
+        dress = input()
+        print("You are all set for your journey!")
+
+# --- Adventure Start ---
+def start_adventure():
+    print("Loading...\nPlease type 'goo' to continue")
+    go = input()
+    if go == "goo":
+        print("Your adventure begins in an enormous forest full of trees.")
+        print("Type 'inv' to see your resources.")
+        if input() == "inv":
+            show_inventory()
+            print("Press '4' to light a fire.")
+            if input() == "4":
+                print("You lit a fire! -1 Wood, +1 Craftmanship")
+                inventory["Wood"] -= 1
+                stats["Craftmanship"] += 1
+                print("Press '1' to see your stats")
+                if input() == "1":
+                    show_stats()
+                print("You encounter a bunny. Options: Attack, Talk, Walk, Pet")
+                action = input().lower()
+                if action == "attack":
+                    print("The bunny was a monster. You died.")
+                elif action == "talk":
+                    print("The bunny speaks! +2 Friendship")
+                    stats["Friendship"] += 2
+                elif action == "walk":
+                    print("You walk past. Nothing happens.")
+                elif action == "pet":
+                    print("You pet the bunny. It meows. +1 Cuteness")
+                    stats["Cuteness"] += 1
+
+# --- Main Game Loop ---
+def game_loop():
+    while True:
+        print("\nWhat would you like to do?")
+        print("1: Inventory | 2: Stats | 3: Chop Wood | 4: Forage Food | 5: Search Coal | 6: Mine Stone | q: Quit")
+        choice = input()
+
+        if choice == "1":
+            show_inventory()
+        elif choice == "2":
+            show_stats()
+        elif choice == "3":
+            chop_wood()
+        elif choice == "4":
+            forage_food()
+        elif choice == "5":
+            search_coal()
+        elif choice == "6":
+            mine_stone()
+        elif choice == "q":
+            print("Goodbye adventurer!")
+            break
+
+# --- Run Game ---
+print("Welcome, Young and courageous adventurer!")
+character_creation()
+start_adventure()
+game_loop()
