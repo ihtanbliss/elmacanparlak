@@ -1,33 +1,52 @@
-print("Welcome aboard, courageous warrior. Type start to begin your adventure!")
-answer = input()
-if answer == "start":
-    print("You embarekd on a new journey. Let us create you a character.")
-    print("What is your sex?")
-    gender = input()
-    if gender == "Female":
-        print("Please choose your hairstyle from 1-4")
-        print("1:Pixie")
-        print("2:Bob cut")
-        print("3:Braid")
-        print("4:Afro")
-    hair = input()
-    if hair == "1" or hair == "2" or hair == "3" or hair == "4":
-             print("Good choice, warrior! Let us dress you so you will not feel cold!")
-             print("Please choose yourself a dress from 1-3")
-             print("1:kirtle")
-             print("2:chemise")
-             print("3:houppelande")
-    dress = input()
-    if dress == "1" or "2" or "3":
-        print("You are all set young adcenturer! Go out there and show the world what you got!")
-elif gender == "Male":
-        print("Please choose your hairstyle from 1-4")
-        print("1:Mohawk")
-        print("2:Mullet")
-        print("3:Buzz Cut")
-        print("4:Low Taper Fade")
+print("Welcome, Young and courageous adventurer! Your journey begins here. You will not stop in the face of summer, winter, hot and cold, through thick and thin and will continue to fight until the end")
+print("Choose your gender to start.")
+gender = input()
+if gender == "boy" or gender == "male" or gender == "guy" or gender == "man":
+     print("Welcome aboard! Please state your name.")
+     name = input()
+     print("Glad to see you here!",name,"\nPlease choose your hairstyle")
+     print("1:Buzz Cut")
+     print("2:Mullet")
+     print("3:Mohawk")
+     print("4:Low Taper Fade")
+     hair = input()
+     if hair == "1" or hair == "2" or hair == "3" or hair == "4":
+         print("Wise choice young traveler! Let us dress you so that you won't feel cold")
+         print("Choose your dress from 1-4")
+         print("1:braies")
+         print("2:hose")
+         print("3:doublet")
+         print("4:houppelande")
+         dress = input()
+         if dress == "1" or dress == "2" or dress == "3" or dress == "4":
+             print("You are all set for your journey! Go on and show the world what you got!")
+elif gender == "girl" or gender == "woman" or gender == "female":
+        print("Welcome aboard! Please state your name.")
+        name2 = input()
+        print("Glad to meet you", name2, "\nPlease choose your hairstyle")
+        print("1:Bobcut")
+        print("2:Pixie")
+        print("3:Shag Cut")
+        print("4:Bangs")
         hair2 = input()
-elif hair2 == "1" or hair2 == "2" or hair2 == "3" or hair2 == "4":
-        print("Good choice, warrior! Let us dress you so you will not feel cold.")
-        
-        
+        if hair2 == "1" or hair2 == "2" or hair2 == "3" or hair2 == "4":
+         print("Wise choice young traveler! Let us dress you so that you won't feel cold")
+         print("Choose your dress from 1-4")
+         print("1:Kirtle")
+         print("2:Cotehardie")
+         print("3:Surcote")
+         print("Mantle")
+         dress2 = input()
+         if dress2 == "1" or dress2 == "2" or dress2 == "3" or dress2 == "4":
+              print("You are all set for your journey! Go on and show the world what you got!")
+print("Loading.....\n\n\n""Please type 'goo' to continue")
+go = input()
+print("Your adventure begins in an enormous forest full of trees.\nTo survive you need resources, Type 'inv' to see your resources.")
+inv= input()
+if inv == "inv":
+    print("Wood: 2")
+    print("Rock: 5")
+    print("Water: 2 Liters")
+    print("A flint")
+             
+
