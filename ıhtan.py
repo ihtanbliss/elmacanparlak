@@ -1,105 +1,84 @@
-# --- Player Data ---
 stats = {
-    "Health": 100,
     "Strength": 1,
-    "Stamina": 1,
-    "Friendship": 0,
-    "Cuteness": 0,
-    "Craftmanship": 1
+    "Armor": 1,
+    "Outdoormanship": 1,
+    "Craftmanship": 1,
+    "Love": 1,
+    "Friendship": 1
 }
 
-inventory = {
-    "Wood": 2,
-    "Stone": 5,
-    "Water": 2,
+Inventory = {
+    "Wood": 1,
+    "Stone": 1,
     "Flint": 1,
+    "Water(L)": 2,
     "Food": 1
 }
 
-# --- Utility Functions ---
 def show_inventory():
-    print("\n=== INVENTORY ===")
-    for item, amount in inventory.items():
-        print(f"{item}: {amount}")
+    print("\n=== Inventory ===")
+    for item, amount in Inventory.items():
+        print(f"{item}: {amount}") 
 
 def show_stats():
-    print("\n=== STATS ===")
+    print("\n=== Stats ===")
     for stat, value in stats.items():
         print(f"{stat}: {value}")
 
-def chop_wood():
-    print("You chop down some wood. +5 Wood")
-    inventory["Wood"] += 5
+def chopwood():
+    print("You chopped down some wood. +5 wood added to your inventory")
+    Inventory["Wood"] += 5
 
-def forage_food():
-    print("You forage and find a deer carcass. +5 Food")
-    inventory["Food"] += 5
+def foragefood():
+    print("You foraged some food. +5 food added to your inventory")
+    Inventory["Food"] += 5
+    stats["Outdoormanship"] += 1
 
-def search_coal():
-    print("You wander into caves but get scared off. No coal found.")
+def minestones():
+    print("You mined some stones. +5 stones added to your inventory.")
+    Inventory["Stone"] += 5
 
-def mine_stone():
-    print("You crafted a wooden pickaxe and mined stones. +5 Stone")
-    inventory["Stone"] += 5
+def collectwater():
+    print("You collected water from the stream. +5 water added to your inventory.")
+    Inventory["Water(L)"] += 5
 
-# --- Character Creation ---
-def character_creation():
-    print("Choose your gender to start.")
-    gender = input().lower()
-
-    if gender in ["boy", "male", "guy", "man"]:
-        name = input("Welcome aboard! Please state your name: ")
-        print(f"Glad to see you here, {name}!")
-        print("Choose your hairstyle: 1:Buzz Cut 2:Mullet 3:Mohawk 4:Low Taper Fade")
-        hair = input()
+def char_creation():
+    print("Welcome, young and courageous warrior. Your adventure begins here. Type in your name to go on with your journey.")
+    name = input()
+    print(f"It is so nice to meet you, {name}. Please choose your gender (boy/girl).")
+    gender = input()
+    if gender == "boy":
         print("Choose your dress: 1:Braies 2:Hose 3:Doublet 4:Houppelande")
         dress = input()
-        print("You are all set for your journey!")
-
-    elif gender in ["girl", "woman", "female"]:
-        name = input("Welcome aboard! Please state your name: ")
-        print(f"Glad to meet you, {name}!")
-        print("Choose your hairstyle: 1:Bobcut 2:Pixie 3:Shag Cut 4:Bangs")
-        hair = input()
+        print(f"Wise choice with your {dress}. Go on out there and show the world what you got.")
+    elif gender == "girl":
         print("Choose your dress: 1:Kirtle 2:Cotehardie 3:Surcote 4:Mantle")
-        dress = input()
-        print("You are all set for your journey!")
+        dress2 = input()
+        print(f"Wise choice with your {dress2}. Go on out there and show the world what you got.")
 
-# --- Adventure Start ---
-def start_adventure():
-    print("Loading...\nPlease type 'goo' to continue")
+def startadventure():
+    print("Loading...\nPlease type 'goo' to continue.")
     go = input()
     if go == "goo":
-        print("Your adventure begins in an enormous forest full of trees.")
-        print("Type 'inv' to see your resources.")
-        if input() == "inv":
+        print("Your adventure begins in an enormous forest full of trees.\nType 'inv' to see your inventory")
+        inv = input()
+        if inv == "inv":
             show_inventory()
-            print("Press '4' to light a fire.")
-            if input() == "4":
-                print("You lit a fire! -1 Wood, +1 Craftmanship")
-                inventory["Wood"] -= 1
+            print("Type 'fire' to light up a fire.")
+            fire = input()
+            if fire == "fire":
+                print("You lit up a smoldering fire. -1 Wood, +1 Craftmanship")
+                Inventory["Wood"] -= 1
                 stats["Craftmanship"] += 1
-                print("Press '1' to see your stats")
-                if input() == "1":
-                    show_stats()
-                print("You encounter a bunny. Options: Attack, Talk, Walk, Pet")
-                action = input().lower()
-                if action == "attack":
-                    print("The bunny was a monster. You died.")
-                elif action == "talk":
-                    print("The bunny speaks! +2 Friendship")
-                    stats["Friendship"] += 2
-                elif action == "walk":
-                    print("You walk past. Nothing happens.")
-                elif action == "pet":
-                    print("You pet the bunny. It meows. +1 Cuteness")
-                    stats["Cuteness"] += 1
+                print("You are getting hungry. Type 'food' to forage food.")
+                food = input()
+                if food == "food":
+                    foragefood()
 
-# --- Main Game Loop ---
 def game_loop():
     while True:
         print("\nWhat would you like to do?")
-        print("1: Inventory | 2: Stats | 3: Chop Wood | 4: Forage Food | 5: Search Coal | 6: Mine Stone | q: Quit")
+        print("1: Inventory | 2: Stats | 3: Chop Wood | 4: Forage Food | 5: Mine Stones | 6: Collect Water | q: Quit")
         choice = input()
 
         if choice == "1":
@@ -107,19 +86,18 @@ def game_loop():
         elif choice == "2":
             show_stats()
         elif choice == "3":
-            chop_wood()
+            chopwood()
         elif choice == "4":
-            forage_food()
+            foragefood()
         elif choice == "5":
-            search_coal()
+            minestones()
         elif choice == "6":
-            mine_stone()
+            collectwater()
         elif choice == "q":
             print("Goodbye adventurer!")
             break
 
-# --- Run Game ---
-print("Welcome, Young and courageous adventurer!")
-character_creation()
-start_adventure()
+# Run game
+char_creation()
+startadventure()
 game_loop()
